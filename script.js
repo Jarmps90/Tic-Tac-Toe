@@ -1,1 +1,9 @@
-console.log('Hello world')
+
+const GameBoard = () => {
+    const gameBoard = [
+        firstRow = [],
+        secondRow = [],
+        thirdRow = []
+    ];
+    
+}
