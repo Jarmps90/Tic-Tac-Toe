@@ -15,5 +15,5 @@ function Gameboard() {
     console.log(board);
 };
 
-Gameboard();
+
 
