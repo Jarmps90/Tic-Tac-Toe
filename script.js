@@ -48,16 +48,13 @@ function gameControll() {
 
 //Module that adds tokkens
     const addToken = (row, colum) => {
-        const tokenX = 'X';
-        const tokenO = 'O';
         
-        
-        if((board[row][colum] === tokenO) || (board[row][colum] === tokenX)) {
+      if((board[row][colum] === playerOne) || (board[row][colum] === playerTwo)) {
             return console.log('This is invalid move')
         } else {
             board[row][colum] = activePlayer;
             return switchPlayers();
-        }
+      }
         
     };
     
@@ -78,6 +75,7 @@ gameOn.addToken(0,1);
 gameOn.addToken(1,2);
 gameOn.addToken(0,0);
 gameOn.addToken(2,0);
-gameOn.addToken(0,2)
+gameOn.addToken(0,2);
+
 gameOn.winningContitions();
 Gameboard.printBoard()
