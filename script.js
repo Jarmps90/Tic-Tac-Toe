@@ -60,12 +60,13 @@ function gameControll() {
         
     };
     
-function winningContitions(board) {
-    // if((board[0][0] === 'X') && (board[0][1] === 'X') && (board[0][2] === 'X') || (board[0][0] === 'O') && (board[0][1] === 'O') && (board[0][2] === 'O') ||
-    //     (board[1][0] === 'X') && (board[1][1] === 'X') && (board[1][2] === 'X') || (board[1][0] === 'O') && (board[1][1] === 'O') && (board[1][2] === 'O')){
-    //     console.log('You are winner')
-    // }
-    //if array postition is 0 do nothing if it is not run this code.
+function winningContitions() {
+   
+    if((board[0][0] === 'X') && (board[0][1] === 'X') && (board[0][2] === 'X') || (board[0][0] === 'O') && (board[0][1] === 'O') && (board[0][2] === 'O') ||
+        (board[1][0] === 'X') && (board[1][1] === 'X') && (board[1][2] === 'X') || (board[1][0] === 'O') && (board[1][1] === 'O') && (board[1][2] === 'O')){
+        console.log('You are winner')
+    }
+    // if array postition is 0 do nothing if it is not run this code.
 };
 
 
@@ -83,4 +84,4 @@ gameOn.addToken(2,0);
 gameOn.addToken(0,2);
 
 gameOn.winningContitions();
-// Gameboard.printBoard()
+Gameboard.printBoard()
