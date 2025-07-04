@@ -66,7 +66,7 @@ function winningContitions() {
         (board[1][0] === 'X') && (board[1][1] === 'X') && (board[1][2] === 'X') || (board[1][0] === 'O') && (board[1][1] === 'O') && (board[1][2] === 'O')){
         console.log('You are winner')
     }
-    // if array postition is 0 do nothing if it is not run this code.
+    // if array elements are 0 do nothing if it is not run this code.
 };
 
 
