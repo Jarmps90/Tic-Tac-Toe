@@ -68,6 +68,7 @@ function winningContitions() {
         console.log('You are winner')
     }
     // if array elements are 0 do nothing if it is not run this code.
+    //Mabye map() method can do this litle shorter.
 };
 
 
