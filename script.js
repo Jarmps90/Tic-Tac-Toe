@@ -12,7 +12,7 @@ const Gameboard = (function() {
   
   const getBoard = () => gameBoard;
 
-   //Displays printed borard 
+   //Displays printed board 
     const printBoard = () => {
         for(let row of gameBoard) {
             const rowString = row.join(' ')
@@ -65,10 +65,19 @@ function winningContitions() {
    //Try to add some empty check before winning contidions checks
    if(!board.length) return;
 
-    if((board[0][0] === 'X') && (board[0][1] === 'X') && (board[0][2] === 'X') || (board[0][0] === 'O') && (board[0][1] === 'O') && (board[0][2] === 'O') ||
-        (board[1][0] === 'X') && (board[1][1] === 'X') && (board[1][2] === 'X') || (board[1][0] === 'O') && (board[1][1] === 'O') && (board[1][2] === 'O')){
+    const isX = (arr) => arr === 'X';
+    const isO = (arr) => arr === 'O';
+    
+    if((board[0].every(isX) === true) || (board[0].every(isO) === true) || 
+        (board[1].every(isX) === true) || (board[1].every(isO) === true) ||
+        (board[2].every(isX) === true) || (board[2].every(isO) === true)) {
         console.log('You are winner')
-    }
+    };
+   
+//    if((board[0][0] === 'X') && (board[1][1] === 'X') && (board[0][2] === 'X') || (board[0][0] === 'O') && (board[0][1] === 'O') && (board[0][2] === 'O') ||
+//         (board[1][0] === 'X') && (board[1][1] === 'X') && (board[1][2] === 'X') || (board[1][0] === 'O') && (board[1][1] === 'O') && (board[1][2] === 'O')){
+//         console.log('You are winner')
+//     }
 
     
    
@@ -80,13 +89,15 @@ function winningContitions() {
 };
 
 const gameOn = gameControll();
-
+gameOn.addToken(1,1);
 gameOn.addToken(1,0);
-gameOn.addToken(0,1);
+
+
 gameOn.addToken(1,2);
 gameOn.addToken(0,0);
 gameOn.addToken(2,0);
 gameOn.addToken(0,2);
-
+gameOn.addToken(2,1)
+gameOn.addToken(0,1)
 gameOn.winningContitions();
 Gameboard.printBoard()
