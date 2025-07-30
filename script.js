@@ -63,12 +63,13 @@ function gameControll() {
 function winningContitions() {
    //Rethink youre winning contitions
    //Try to add some empty check before winning contidions checks
-   if(!board.length) return;
+   
+    if(!board.length) return;
 
     const isX = (arr) => arr === 'X';
     const isO = (arr) => arr === 'O';
     
-    if((board[0].every(isX) === true) || (board[0].every(isO) === true) || 
+    if( (board[0].every(isX) === true) || (board[0].every(isO) === true) || 
         (board[1].every(isX) === true) || (board[1].every(isO) === true) ||
         (board[2].every(isX) === true) || (board[2].every(isO) === true)) {
         console.log('You are winner')
@@ -83,7 +84,7 @@ function winningContitions() {
    
 };
 
-
+8
   
     return{addToken, switchPlayers, winningContitions}
 };
