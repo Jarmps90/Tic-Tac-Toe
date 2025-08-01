@@ -57,7 +57,6 @@ function gameControll() {
             board[row][colum] = activePlayer;
             return switchPlayers();
       }
-        
     };
     
 function winningContitions() {
@@ -80,13 +79,7 @@ function winningContitions() {
 //         (board[1][0] === 'X') && (board[1][1] === 'X') && (board[1][2] === 'X') || (board[1][0] === 'O') && (board[1][1] === 'O') && (board[1][2] === 'O')){
 //         console.log('You are winner')
 //     }
-
-    
-   
 };
-
-8
-  
     return{addToken, switchPlayers, winningContitions}
 };
 
