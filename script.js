@@ -74,7 +74,8 @@ function winningContitions() {
         (board[2].every(isX) === true) || (board[2].every(isO) === true)) {
         console.log('You are winner')
     };
-   
+
+    // Alternative solution
 //    if((board[0][0] === 'X') && (board[1][1] === 'X') && (board[0][2] === 'X') || (board[0][0] === 'O') && (board[0][1] === 'O') && (board[0][2] === 'O') ||
 //         (board[1][0] === 'X') && (board[1][1] === 'X') && (board[1][2] === 'X') || (board[1][0] === 'O') && (board[1][1] === 'O') && (board[1][2] === 'O')){
 //         console.log('You are winner')
