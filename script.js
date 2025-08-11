@@ -60,7 +60,7 @@ function gameControll() {
     };67 
     
 function winningContitions() {
-   //Rethink youre winning contitions
+   //Rethink you're winning contitions
    //Try to add some empty check before winning contidions checks
    
     if(!board.length) return;
