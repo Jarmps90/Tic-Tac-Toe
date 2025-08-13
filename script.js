@@ -67,12 +67,34 @@ function winningContitions() {
 
     const isX = (arr) => arr === 'X';
     const isO = (arr) => arr === 'O';
-    
-    if( (board[0].every(isX) === true) || (board[0].every(isO) === true) || 
-        (board[1].every(isX) === true) || (board[1].every(isO) === true) ||
-        (board[2].every(isX) === true) || (board[2].every(isO) === true)) {
+
+    function rows() {
+        const firstRow = [];
+        const secondRow = [];
+        const thirdRow = [];
+
+        for(let i = 0; i < 3; i++) {
+            firstRow[i] = board[0][i];
+            secondRow[i] = board[1][i];
+            thirdRow[i] = board[1][i];
+        };
+
+        return{firstRow, secondRow, thirdRow};
+    };
+
+    const row = rows();
+
+    if((row.firstRow.every(isX) === true) || (row.firstRow.every(isO) === true) ||
+        (row.secondRow.every(isX) === true) || (row.secondRow.every(isO) === true) ||
+        (row.thirdRow.every(isX) === true) || (row.thirdRow.every(isO) === true)) {
         console.log('You are winner')
     };
+    
+    // if( (board[0].every(isX) === true) || (board[0].every(isO) === true) || 
+    //     (board[1].every(isX) === true) || (board[1].every(isO) === true) ||
+    //     (board[2].every(isX) === true) || (board[2].every(isO) === true)) {
+    //     console.log('You are winner')
+    // };
 
    
 };
