@@ -124,7 +124,7 @@ function winningContitions() {
         (colum.thirdColumn.every(isX) === true) || (colum.thirdColumn.every(isO) === true) ||
         (diagonal.diagonal1.every(isX) === true) || (diagonal.diagonal1.every(isO) === true) ||
         (diagonal.diagonal2.every(isX) === true) || (diagonal.diagonal2.every(isO) === true)) {
-        console.log('You are winner')
+       return console.log('You are winner')
     };
     
     };
@@ -132,15 +132,7 @@ function winningContitions() {
 };
 
 const gameOn = gameControll();
-gameOn.addToken(1,1);
-gameOn.addToken(1,0);
 
 
-gameOn.addToken(1,2);
-gameOn.addToken(0,0);
-gameOn.addToken(2,0);
-gameOn.addToken(0,2);
-gameOn.addToken(2,1)
-gameOn.addToken(0,1)
 gameOn.winningContitions();
 Gameboard.printBoard()
