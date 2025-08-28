@@ -27,7 +27,7 @@ const Gameboard = (function() {
 
 function gameControll() {
     const board = Gameboard.getBoard()
-    
+    let movesCount = 0;
 //Module that defines palyers 
   
     const players = {
@@ -39,7 +39,7 @@ function gameControll() {
     let activePlayer = playerOne;
 
 //Function that switches between players
-//Add check that palyer is placed token and then switch
+
     const switchPlayers = () => {
         if(activePlayer === playerOne) {
             activePlayer = playerTwo;
@@ -55,7 +55,11 @@ function gameControll() {
             return console.log('This is invalid move')
         } else {
             board[row][colum] = activePlayer;
+            movesCount++;
+            console.log(movesCount)
             return switchPlayers();
+            
+            
       }
     };
     
@@ -125,14 +129,18 @@ function winningContitions() {
         (diagonal.diagonal1.every(isX) === true) || (diagonal.diagonal1.every(isO) === true) ||
         (diagonal.diagonal2.every(isX) === true) || (diagonal.diagonal2.every(isO) === true)) {
        return console.log('You are winner')
-    };
+    } else if(movesCount === 9) {
+        return console.log('Its a tie')
+    }
     
     };
+    
     return{addToken, switchPlayers, winningContitions}
 };
 
 const gameOn = gameControll();
-
+gameOn.addToken(1,1);
+gameOn.addToken(1,2);
 
 gameOn.winningContitions();
 Gameboard.printBoard()
