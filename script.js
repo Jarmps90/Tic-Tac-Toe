@@ -111,8 +111,11 @@ function winningContitions() {
         for(let a = 0, b = 1, c = 2; a < board.length; a++) {
             diagonal2[0] = board[0][a];
             diagonal2[1] = board[b][1];
-            diagonal2[2] = board[c][0];
+            diagonal2[2] = board[c][2];
+           
         };
+      
+     
         return{diagonal1, diagonal2};
     };
 
@@ -128,6 +131,7 @@ function winningContitions() {
         (colum.thirdColumn.every(isX) === true) || (colum.thirdColumn.every(isO) === true) ||
         (diagonal.diagonal1.every(isX) === true) || (diagonal.diagonal1.every(isO) === true) ||
         (diagonal.diagonal2.every(isX) === true) || (diagonal.diagonal2.every(isO) === true)) {
+
        return console.log('You are winner')
     } else if(movesCount === 9) {
         return console.log('Its a tie')
@@ -141,6 +145,13 @@ function winningContitions() {
 const gameOn = gameControll();
 gameOn.addToken(1,1);
 gameOn.addToken(1,2);
+gameOn.addToken(0,0);
+gameOn.addToken(0,1);
+gameOn.addToken(0,2);
+gameOn.addToken(2,0);
+gameOn.addToken(2,2);
+gameOn.addToken(2,1)
+
 
 gameOn.winningContitions();
 Gameboard.printBoard()
