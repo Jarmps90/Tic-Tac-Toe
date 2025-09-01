@@ -142,7 +142,14 @@ function winningContitions() {
     return{addToken, switchPlayers, winningContitions}
 };
 
+
+function domLogic() {
+  
+    
+};
+
 const gameOn = gameControll();
+
 gameOn.addToken(1,1);
 gameOn.addToken(1,2);
 gameOn.addToken(0,0);
