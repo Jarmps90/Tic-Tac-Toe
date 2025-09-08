@@ -6,7 +6,7 @@ const Gameboard = (function() {
   for(let i = 0; i < rows; i++) {
     gameBoard[i] = [];
     for(let j = 0; j < colums; j++) {
-      gameBoard[i].push(0)
+      gameBoard[i].push('')
     };
   };
   
@@ -144,8 +144,16 @@ function winningContitions() {
 
 
 function domLogic() {
-  
-    
+    const board = Gameboard.getBoard();
+    const container = document.getElementById('mainBody');
+
+    for(let i = 0; i < board.length; i++) {
+        for(let j = 0; j < board.length; j++) {
+            let box = document.createElement('div');
+            box.innerText = board[i][j];
+            container.appendChild(box);
+        };
+    };
 };
 
 const gameOn = gameControll();
@@ -157,8 +165,9 @@ gameOn.addToken(0,1);
 gameOn.addToken(0,2);
 gameOn.addToken(2,0);
 gameOn.addToken(2,2);
-gameOn.addToken(2,1)
+
 
 
 gameOn.winningContitions();
-Gameboard.printBoard()
+Gameboard.printBoard();
+domLogic();
