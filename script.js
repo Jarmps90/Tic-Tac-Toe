@@ -150,8 +150,16 @@ function domLogic() {
     for(let i = 0; i < board.length; i++) {
         for(let j = 0; j < board.length; j++) {
             let box = document.createElement('div');
+            box.id = 'box'
             box.innerText = board[i][j];
             container.appendChild(box);
+
+                box.addEventListener("mousedown", () => {
+                    console.log(box.id)
+               
+            });
+         
+            
         };
     };
 };
@@ -159,12 +167,10 @@ function domLogic() {
 const gameOn = gameControll();
 
 gameOn.addToken(1,1);
-gameOn.addToken(1,2);
 gameOn.addToken(0,0);
+gameOn.addToken(1,0);
 gameOn.addToken(0,1);
-gameOn.addToken(0,2);
-gameOn.addToken(2,0);
-gameOn.addToken(2,2);
+gameOn.addToken(1,2);
 
 
 
