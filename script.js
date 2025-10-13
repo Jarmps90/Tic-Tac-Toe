@@ -6,7 +6,7 @@ const Gameboard = (function() {
   for(let i = 0; i < rows; i++) {
     gameBoard[i] = [];
     for(let j = 0; j < colums; j++) {
-      gameBoard[i].push('')
+      gameBoard[i].push(cell())
     };
   };
   
@@ -23,10 +23,21 @@ const Gameboard = (function() {
     return {getBoard, printBoard}
 })();
 
+function cell() {
+    let value = 0;
+
+    const addMarker = (player) => {
+        value = player;
+    };
+
+    const getValue = () => value;
+};
+
 
 
 function gameControll() {
     const board = Gameboard.getBoard()
+    
     let movesCount = 0;
 //Module that defines palyers 
   
@@ -36,7 +47,7 @@ function gameControll() {
         };
     const {playerOne, playerTwo} = players;
 
-    let activePlayer = playerOne;
+     let activePlayer = playerOne;
 
 //Function that switches between players
 
@@ -48,6 +59,8 @@ function gameControll() {
             activePlayer = playerOne;
     }};
 
+    const getActivePlayer = () => activePlayer; 
+
 //Module that adds tokkens
     const addToken = (row, colum) => {
         
@@ -56,16 +69,16 @@ function gameControll() {
         } else {
             board[row][colum] = activePlayer;
             movesCount++;
-            console.log(movesCount)
+          
             return switchPlayers();
             
             
-      }
-    };
-    
+    }
+};
+
 function winningContitions() {
    
-   //Try to add some empty check before winning contidions checks
+    let winner = false;
    
     if(!board.length) return;
 
@@ -139,35 +152,79 @@ function winningContitions() {
     
     };
     
-    return{addToken, switchPlayers, winningContitions}
+
+    return{addToken, switchPlayers, winningContitions, getActivePlayer}
 };
 
 
 function domLogic() {
     const board = Gameboard.getBoard();
     const container = document.getElementById('mainBody');
-
-    for(let i = 0; i < board.length; i++) {
-            
+    const activePlayer = gameOn.getActivePlayer();
+    let count = 0;
+    
+    const updateScreen = () => {
+        let count = 0;
+        container.textContent = '';
+        board.forEach((row) => {
+            row.forEach(cell => {
+                
+                const cellBtn = document.createElement('button');
+                cellBtn.classList.add('cell');
+                [board].map(item => {
+                    count++
+                })
+                
+                cellBtn.dataset.cell = count;
+                cellBtn.textContent = cell
+                container.appendChild(cellBtn);
+            })
+        })
         
-        for(let j = 0; j < board.length; j++) {
-            const cell = document.createElement('div');
-            cell.innerText = board[i][j];
-            cell.classList.add('cell');
-            container.appendChild(cell);
-
-                cell.addEventListener("mousedown", () => {
-                   alert('farts')
-                    
-            });
-        };
     };
-};
+   
+    
+    
+  
+
+    function clicker(e) {
+         
+        const btn = e.target.dataset.cell;
+        if(btn === '1') {
+        gameOn.addToken(0,0)
+       
+    } else if(btn === '2') {
+        gameOn.addToken(0,1)
+    } else if(btn === '3') {
+        gameOn.addToken(0,2)
+    } else if(btn === '4') {
+        gameOn.addToken(1,0)
+    } else if(btn === '5') {
+        gameOn.addToken(1,1)
+    } else if(btn === '6') {
+        gameOn.addToken(1,2)
+    } else if(btn === '7') {
+        gameOn.addToken(2,0)
+    } else if(btn === '8') {
+        gameOn.addToken(2,1)
+    } else if(btn === '9') {
+        gameOn.addToken(2,2)
+    }
+        updateScreen();
+        gameOn.winningContitions()
+    };
+    container.addEventListener('click', clicker) 
+    
+    
+    updateScreen();
+    
+ };
+
 
 const gameOn = gameControll();
-gameOn.addToken(1,1)
 
 
-gameOn.winningContitions();
-Gameboard.printBoard();
+gameOn.addToken(0,0);
+gameOn.addToken(2,2);
 domLogic();
+
