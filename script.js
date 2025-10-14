@@ -46,7 +46,6 @@ function gameControll() {
 
      let activePlayer = playerOne;
     
-     const getCurrentPlayer = () => activePlayer;
 //Function that switches between players
 
     const switchPlayers = () => {
@@ -67,7 +66,7 @@ function gameControll() {
         } else {
             board[row][colum] = activePlayer;
             movesCount++;
-          
+           
             return switchPlayers();
             
             
@@ -126,7 +125,7 @@ function winningContitions() {
            
         };
       
-        console.log(diagonal2)
+        
         return{diagonal1, diagonal2};
     };
     
@@ -143,7 +142,7 @@ function winningContitions() {
         (diagonal.diagonal1.every(isX) === true) || (diagonal.diagonal1.every(isO) === true) ||
         (diagonal.diagonal2.every(isX) === true) || (diagonal.diagonal2.every(isO) === true)) {
         winner = true;
-       return console.log(`${getCurrentPlayer} is winner!!`)
+       return console.log('You are winner')
     } else if(movesCount === 9) {
         return alert('Its a tie')
     } else {
@@ -152,7 +151,7 @@ function winningContitions() {
     
     };
     
-
+    
     return{addToken, switchPlayers, winningContitions, getActivePlayer}
 };
 
