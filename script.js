@@ -1,3 +1,5 @@
+let winner = false;
+
 const Gameboard = (function() {
   const rows = 3;
   const colums = 3;
@@ -26,11 +28,6 @@ const Gameboard = (function() {
 function cell() {
     let value = 0;
 
-    const addMarker = (player) => {
-        value = player;
-    };
-
-    const getValue = () => value;
 };
 
 
@@ -48,7 +45,8 @@ function gameControll() {
     const {playerOne, playerTwo} = players;
 
      let activePlayer = playerOne;
-
+    
+     const getCurrentPlayer = () => activePlayer;
 //Function that switches between players
 
     const switchPlayers = () => {
@@ -78,7 +76,7 @@ function gameControll() {
 
 function winningContitions() {
    
-    let winner = false;
+  
    
     if(!board.length) return;
 
@@ -93,7 +91,7 @@ function winningContitions() {
         for(let i = 0; i < 3; i++) {
             firstRow[i] = board[0][i];
             secondRow[i] = board[1][i];
-            thirdRow[i] = board[1][i];
+            thirdRow[i] = board[2][i];
         };
 
         return{firstRow, secondRow, thirdRow};
@@ -119,19 +117,19 @@ function winningContitions() {
         for(let i = 0, k = 1, l = 2; i < board.length; i++) {
             diagonal1[i] = board[i][0];
             diagonal1[k] = board[k][1];
-            diagonal1[l] = board[k][2];
+            diagonal1[l] = board[l][2];
         };
         for(let a = 0, b = 1, c = 2; a < board.length; a++) {
-            diagonal2[0] = board[0][a];
+            diagonal2[0] = board[a][0];
             diagonal2[1] = board[b][1];
-            diagonal2[2] = board[c][2];
+            diagonal2[2] = board[0][c];
            
         };
       
-     
+        console.log(diagonal2)
         return{diagonal1, diagonal2};
     };
-
+    
     const row = rows();
     const colum = columns();
     const diagonal = diagonals();
@@ -144,10 +142,12 @@ function winningContitions() {
         (colum.thirdColumn.every(isX) === true) || (colum.thirdColumn.every(isO) === true) ||
         (diagonal.diagonal1.every(isX) === true) || (diagonal.diagonal1.every(isO) === true) ||
         (diagonal.diagonal2.every(isX) === true) || (diagonal.diagonal2.every(isO) === true)) {
-
-       return console.log('You are winner')
+        winner = true;
+       return console.log(`${getCurrentPlayer} is winner!!`)
     } else if(movesCount === 9) {
-        return console.log('Its a tie')
+        return alert('Its a tie')
+    } else {
+        winner = false;
     }
     
     };
@@ -190,25 +190,28 @@ function domLogic() {
     function clicker(e) {
          
         const btn = e.target.dataset.cell;
+        
+    if(winner === false) {
         if(btn === '1') {
-        gameOn.addToken(0,0)
-       
-    } else if(btn === '2') {
-        gameOn.addToken(0,1)
-    } else if(btn === '3') {
-        gameOn.addToken(0,2)
-    } else if(btn === '4') {
-        gameOn.addToken(1,0)
-    } else if(btn === '5') {
-        gameOn.addToken(1,1)
-    } else if(btn === '6') {
-        gameOn.addToken(1,2)
-    } else if(btn === '7') {
-        gameOn.addToken(2,0)
-    } else if(btn === '8') {
-        gameOn.addToken(2,1)
-    } else if(btn === '9') {
-        gameOn.addToken(2,2)
+            gameOn.addToken(0,0)
+        } else if(btn === '2') {
+            gameOn.addToken(0,1)
+        } else if(btn === '3') {
+            gameOn.addToken(0,2)
+        } else if(btn === '4') {
+            gameOn.addToken(1,0)
+        } else if(btn === '5') {
+            gameOn.addToken(1,1)
+        } else if(btn === '6') {
+            gameOn.addToken(1,2)
+        } else if(btn === '7') {
+            gameOn.addToken(2,0)
+        } else if(btn === '8') {
+            gameOn.addToken(2,1)
+        } else if(btn === '9') {
+            gameOn.addToken(2,2)
+    } 
+      
     }
         updateScreen();
         gameOn.winningContitions()
@@ -224,7 +227,6 @@ function domLogic() {
 const gameOn = gameControll();
 
 
-gameOn.addToken(0,0);
-gameOn.addToken(2,2);
+
 domLogic();
 
