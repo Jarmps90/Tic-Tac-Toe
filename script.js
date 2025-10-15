@@ -34,7 +34,8 @@ function cell() {
 
 function gameControll() {
     const board = Gameboard.getBoard()
-    
+    let playerOneScore = 0;
+    let playerTwoScore = 0;
     let movesCount = 0;
 //Module that defines palyers 
   
@@ -42,9 +43,11 @@ function gameControll() {
         playerOne : 'X',
         playerTwo : 'O'
         };
-    const {playerOne, playerTwo} = players;
-
-     let activePlayer = playerOne;
+    let {playerOne, playerTwo} = players;
+   
+    // playerOne = 
+    console.log(playerOne)
+    let activePlayer = playerOne;
     
 //Function that switches between players
 
@@ -75,7 +78,7 @@ function gameControll() {
 
 function winningContitions() {
    
-  
+  const winnerText = document.getElementById('winnerBoard')
    
     if(!board.length) return;
 
@@ -133,18 +136,26 @@ function winningContitions() {
     const colum = columns();
     const diagonal = diagonals();
 
-    if((row.firstRow.every(isX) === true) || (row.firstRow.every(isO) === true) ||
-        (row.secondRow.every(isX) === true) || (row.secondRow.every(isO) === true) ||
-        (row.thirdRow.every(isX) === true) || (row.thirdRow.every(isO) === true) ||
-        (colum.firstColumn.every(isX) === true) || (colum.firstColumn.every(isO) === true) ||
-        (colum.secondColumn.every(isX) === true) || (colum.secondColumn.every(isO) === true) ||
-        (colum.thirdColumn.every(isX) === true) || (colum.thirdColumn.every(isO) === true) ||
-        (diagonal.diagonal1.every(isX) === true) || (diagonal.diagonal1.every(isO) === true) ||
-        (diagonal.diagonal2.every(isX) === true) || (diagonal.diagonal2.every(isO) === true)) {
+    if((row.firstRow.every(isX) === true) || (row.secondRow.every(isX) === true) ||
+        (row.thirdRow.every(isX) === true) || (colum.firstColumn.every(isX) === true) ||
+        (colum.secondColumn.every(isX) === true) || (colum.thirdColumn.every(isX) === true) ||
+        (diagonal.diagonal1.every(isX) === true) || (diagonal.diagonal2.every(isX) === true)) {
+
         winner = true;
-       return console.log('You are winner')
+        playerOneScore++
+        return winnerText.textContent = 'Player X is winner!';       
+            
+    } else if((row.firstRow.every(isO) === true) || (row.secondRow.every(isO) === true) ||
+                (row.thirdRow.every(isO) === true) || (colum.firstColumn.every(isO) === true) ||
+                (colum.secondColumn.every(isO) === true) || (colum.thirdColumn.every(isO) === true) ||
+                (diagonal.diagonal1.every(isO) === true) || (diagonal.diagonal2.every(isO) === true)) {
+
+        winner = true;
+        playerTwoScore++
+        return winnerText.textContent = 'Player O is winner!'
+    
     } else if(movesCount === 9) {
-        return alert('Its a tie')
+        return winnerText.textContent = 'Its a tie'
     } else {
         winner = false;
     }
@@ -159,6 +170,7 @@ function winningContitions() {
 function domLogic() {
     const board = Gameboard.getBoard();
     const container = document.getElementById('mainBody');
+    const currentTurn = document.getElementById('turn')
     const activePlayer = gameOn.getActivePlayer();
     let count = 0;
     
@@ -177,6 +189,7 @@ function domLogic() {
                 cellBtn.dataset.cell = count;
                 cellBtn.textContent = cell
                 container.appendChild(cellBtn);
+                currentTurn.textContent = `Player ${gameOn.getActivePlayer()}'s turn`
             })
         })
         
@@ -187,7 +200,7 @@ function domLogic() {
   
 
     function clicker(e) {
-         
+       
         const btn = e.target.dataset.cell;
         
     if(winner === false) {
