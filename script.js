@@ -34,19 +34,16 @@ function cell() {
 
 function gameControll() {
     const board = Gameboard.getBoard()
-    let playerOneScore = 0;
-    let playerTwoScore = 0;
     let movesCount = 0;
-//Module that defines palyers 
-  
-    const players = {
-        playerOne : 'X',
-        playerTwo : 'O'
-        };
-    let {playerOne, playerTwo} = players;
-   
-    // playerOne = 
-    console.log(playerOne)
+
+    function Players(name, marker) {
+        this.name = name;
+        this.marker = marker;
+    }
+
+    const playerOne = new Players(prompt('Player X name ?'), 'X');
+    const playerTwo = new Players(prompt('Player O name ?'), 'O');
+    
     let activePlayer = playerOne;
     
 //Function that switches between players
@@ -59,7 +56,7 @@ function gameControll() {
             activePlayer = playerOne;
     }};
 
-    const getActivePlayer = () => activePlayer; 
+    const getActivePlayer = () => activePlayer.name; 
 
 //Module that adds tokkens
     const addToken = (row, colum) => {
@@ -67,7 +64,7 @@ function gameControll() {
       if((board[row][colum] === playerOne) || (board[row][colum] === playerTwo)) {
             return console.log('This is invalid move')
         } else {
-            board[row][colum] = activePlayer;
+            board[row][colum] = activePlayer.marker;
             movesCount++;
            
             return switchPlayers();
@@ -142,8 +139,8 @@ function winningContitions() {
         (diagonal.diagonal1.every(isX) === true) || (diagonal.diagonal2.every(isX) === true)) {
 
         winner = true;
-        playerOneScore++
-        return winnerText.textContent = 'Player X is winner!';       
+       
+        return winnerText.textContent = `${playerOne.name} is winner!`;       
             
     } else if((row.firstRow.every(isO) === true) || (row.secondRow.every(isO) === true) ||
                 (row.thirdRow.every(isO) === true) || (colum.firstColumn.every(isO) === true) ||
@@ -151,10 +148,11 @@ function winningContitions() {
                 (diagonal.diagonal1.every(isO) === true) || (diagonal.diagonal2.every(isO) === true)) {
 
         winner = true;
-        playerTwoScore++
-        return winnerText.textContent = 'Player O is winner!'
+      
+        return winnerText.textContent = `${playerTwo.name} is winner!`;
     
     } else if(movesCount === 9) {
+        winner = true;
         return winnerText.textContent = 'Its a tie'
     } else {
         winner = false;
@@ -189,7 +187,9 @@ function domLogic() {
                 cellBtn.dataset.cell = count;
                 cellBtn.textContent = cell
                 container.appendChild(cellBtn);
-                currentTurn.textContent = `Player ${gameOn.getActivePlayer()}'s turn`
+              
+                    currentTurn.textContent = `${gameOn.getActivePlayer()}'s turn`
+                
             })
         })
         
