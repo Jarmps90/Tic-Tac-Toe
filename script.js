@@ -41,8 +41,8 @@ function gameControll() {
         this.marker = marker;
     }
 
-    const playerOne = new Players(prompt('Player X name ?'), 'X');
-    const playerTwo = new Players(prompt('Player O name ?'), 'O');
+    const playerOne = new Players('Player X', 'X');
+    const playerTwo = new Players('Player O', 'O');
     
     let activePlayer = playerOne;
     
