@@ -41,8 +41,10 @@ function gameControll() {
         this.marker = marker;
     }
 
-    const playerOne = new Players('Player X', 'X');
+   
+    const playerOne = new Players(playerName(), 'X');
     const playerTwo = new Players('Player O', 'O');
+    
     
     let activePlayer = playerOne;
     
@@ -72,6 +74,8 @@ function gameControll() {
             
     }
 };
+
+
 
 function winningContitions() {
    
@@ -161,7 +165,7 @@ function winningContitions() {
     };
     
     
-    return{addToken, switchPlayers, winningContitions, getActivePlayer}
+    return{addToken, switchPlayers, winningContitions, getActivePlayer, getPlayerOneName, getPlayerTwoName}
 };
 
 
@@ -239,6 +243,6 @@ function domLogic() {
 const gameOn = gameControll();
 
 
-
+playerName()
 domLogic();
 
