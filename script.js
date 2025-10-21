@@ -42,7 +42,7 @@ function gameControll() {
     }
 
    
-    const playerOne = new Players(playerName(), 'X');
+    const playerOne = new Players('Player x', 'X');
     const playerTwo = new Players('Player O', 'O');
     
     
@@ -165,7 +165,7 @@ function winningContitions() {
     };
     
     
-    return{addToken, switchPlayers, winningContitions, getActivePlayer, getPlayerOneName, getPlayerTwoName}
+    return{addToken, switchPlayers, winningContitions, getActivePlayer}
 };
 
 
@@ -243,6 +243,6 @@ function domLogic() {
 const gameOn = gameControll();
 
 
-playerName()
+
 domLogic();
 
