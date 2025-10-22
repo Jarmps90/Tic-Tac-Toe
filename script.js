@@ -36,14 +36,21 @@ function gameControll() {
     const board = Gameboard.getBoard()
     let movesCount = 0;
 
-    function Players(name, marker) {
-        this.name = name;
-        this.marker = marker;
+    // function Players(name, marker) {
+    //     this.name = name;
+    //     this.marker = marker;
+    // }
+
+    const createPlayer = (name, marker) => {
+        const playerName = name;
+        const playerMarker = marker;
+
+        return {playerName, playerMarker};
     }
 
    
-    const playerOne = new Players('Player x', 'X');
-    const playerTwo = new Players('Player O', 'O');
+    const playerOne = createPlayer('Player X', 'X');
+    const playerTwo = createPlayer('Player O', 'O');
     
     
     let activePlayer = playerOne;
@@ -58,7 +65,7 @@ function gameControll() {
             activePlayer = playerOne;
     }};
 
-    const getActivePlayer = () => activePlayer.name; 
+    const getActivePlayer = () => activePlayer.playerName; 
 
 //Module that adds tokkens
     const addToken = (row, colum) => {
@@ -66,7 +73,7 @@ function gameControll() {
       if((board[row][colum] === playerOne) || (board[row][colum] === playerTwo)) {
             return console.log('This is invalid move')
         } else {
-            board[row][colum] = activePlayer.marker;
+            board[row][colum] = activePlayer.playerMarker;
             movesCount++;
            
             return switchPlayers();
@@ -144,7 +151,7 @@ function winningContitions() {
 
         winner = true;
        
-        return winnerText.textContent = `${playerOne.name} is winner!`;       
+        return winnerText.textContent = `${playerOne.playerName} is winner!`;       
             
     } else if((row.firstRow.every(isO) === true) || (row.secondRow.every(isO) === true) ||
                 (row.thirdRow.every(isO) === true) || (colum.firstColumn.every(isO) === true) ||
@@ -153,7 +160,7 @@ function winningContitions() {
 
         winner = true;
       
-        return winnerText.textContent = `${playerTwo.name} is winner!`;
+        return winnerText.textContent = `${playerTwo.playerName} is winner!`;
     
     } else if(movesCount === 9) {
         winner = true;
