@@ -1,4 +1,34 @@
 let winner = false;
+const players = [];
+
+const startButton = () => {
+    const startBtn = document.querySelector('.startBtn');
+    const modal = document.querySelector('#modal');
+    startBtn.addEventListener('click' , () => {
+        modal.showModal();
+        addPlayerNames();
+        if(startBtn.parentNode) {
+            startBtn.parentNode.removeChild(startBtn);
+        }
+    });
+};
+
+
+function divCreate() {
+    const container = document.querySelector('#mainContainer');
+    const turn = document.createElement('div');
+    const mainBody = document.createElement('div');
+    const winnerBoard = document.createElement('div');
+    
+    turn.classList.add('turn');
+    mainBody.classList.add('mainBody');
+    winnerBoard.classList.add('winnerBoard')
+   
+    container.appendChild(turn);
+    container.appendChild(mainBody);
+    container.appendChild(winnerBoard);
+    
+};
 
 const Gameboard = (function() {
   const rows = 3;
@@ -30,16 +60,27 @@ function cell() {
 
 };
 
+function addPlayerNames() {
+    const button = document.querySelector('.confirm');
+
+    button.addEventListener('click', () => {
+        const player1 = document.querySelector('#playerOne').value;
+        const player2 = document.querySelector('#playerTwo').value;
+        players.push(player1, player2);
+        divCreate();
+        domLogic();
+    })
+};
+
+
+
 
 
 function gameControll() {
     const board = Gameboard.getBoard()
     let movesCount = 0;
 
-    // function Players(name, marker) {
-    //     this.name = name;
-    //     this.marker = marker;
-    // }
+  
 
     const createPlayer = (name, marker) => {
         const playerName = name;
@@ -49,13 +90,13 @@ function gameControll() {
     }
 
    
-    const playerOne = createPlayer('Player X', 'X');
-    const playerTwo = createPlayer('Player O', 'O');
+    const playerOne = createPlayer(players[0], 'X');
+    const playerTwo = createPlayer(players[1], 'O');
     
     
     let activePlayer = playerOne;
     
-//Function that switches between players
+
 
     const switchPlayers = () => {
         if(activePlayer === playerOne) {
@@ -67,10 +108,10 @@ function gameControll() {
 
     const getActivePlayer = () => activePlayer.playerName; 
 
-//Module that adds tokkens
+
     const addToken = (row, colum) => {
         
-      if((board[row][colum] === playerOne) || (board[row][colum] === playerTwo)) {
+      if((board[row][colum] === playerOne.playerMarker) || (board[row][colum] === playerTwo.playerMarker)) {
             return console.log('This is invalid move')
         } else {
             board[row][colum] = activePlayer.playerMarker;
@@ -86,7 +127,7 @@ function gameControll() {
 
 function winningContitions() {
    
-  const winnerText = document.getElementById('winnerBoard')
+  const winnerText = document.querySelector('.winnerBoard')
    
     if(!board.length) return;
 
@@ -177,10 +218,11 @@ function winningContitions() {
 
 
 function domLogic() {
+    const gameOn = gameControll();
     const board = Gameboard.getBoard();
-    const container = document.getElementById('mainBody');
-    const currentTurn = document.getElementById('turn')
-    const activePlayer = gameOn.getActivePlayer();
+    const container = document.querySelector('.mainBody');
+    const currentTurn = document.querySelector('.turn')
+   
     let count = 0;
     
     const updateScreen = () => {
@@ -199,11 +241,11 @@ function domLogic() {
                 cellBtn.textContent = cell
                 container.appendChild(cellBtn);
               
-                    currentTurn.textContent = `${gameOn.getActivePlayer()}'s turn`
+                    
                 
             })
         })
-        
+        currentTurn.textContent = `${gameOn.getActivePlayer()}'s turn`;
     };
    
     
@@ -213,7 +255,8 @@ function domLogic() {
     function clicker(e) {
        
         const btn = e.target.dataset.cell;
-        
+        const button = document.querySelector('.confirm');
+        button.disabled = true;
     if(winner === false) {
         if(btn === '1') {
             gameOn.addToken(0,0)
@@ -233,9 +276,8 @@ function domLogic() {
             gameOn.addToken(2,1)
         } else if(btn === '9') {
             gameOn.addToken(2,2)
-    } 
-      
-    }
+        };
+    };
         updateScreen();
         gameOn.winningContitions()
     };
@@ -247,9 +289,8 @@ function domLogic() {
  };
 
 
-const gameOn = gameControll();
 
 
+startButton();
 
-domLogic();
 
