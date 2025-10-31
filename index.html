@@ -8,8 +8,8 @@
     <title>TicTacToe</title>
 </head>
 <body>
-   
-  <form method="dialog">
+    <dialog id="modal">
+        <form method="dialog">
             <h3>Enter player names</h3>
             <label for="playerOne"></label>
             <input type="text" id="playerOne" placeholder="Player X name">
@@ -17,9 +17,10 @@
             <input type="text" id="playerTwo" placeholder="Player O name">
             <button class="confirm">Confirm</button>
         </form>
-
-    <div id="turn"></div>
-    <div id="mainBody"></div>
-    <div id="winnerBoard"></div>
+    </dialog>
+   
+    <div id="mainContainer">
+         <button class="startBtn">Start</button>
+    </div>
 </body>
-</html>
+</html
