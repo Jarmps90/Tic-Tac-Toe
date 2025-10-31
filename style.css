@@ -1,25 +1,38 @@
 body {
-    width: 100%;
+    width: 98%;
     justify-items: center;
+    align-content: center;
 }
 
-#mainBody {
+.mainBody {
     display: grid;
     grid-template-columns: 50px 50px 50px;
     grid-template-rows: 50px 50px 50px;
     align-items: center;
     justify-items: center;
     border: 1px black solid;
-
 }
 
 .cell {
-   
-    
     height: 40px;
     width: 40px;
     cursor: pointer;
     border: 1px solid black;
     align-content: center;
     justify-items: center;
+}
+
+.startBtn {
+    
+    height: 50px;
+    width: 100px;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}   
+
+#mainContainer {
+    display: grid;
+    grid-template-rows: 1fr 4fr repeat(2, 1fr);
+   
+  
 }
