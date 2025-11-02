@@ -2,20 +2,25 @@ body {
     width: 98%;
     justify-items: center;
     align-content: center;
+    
 }
 
 .mainBody {
     display: grid;
-    grid-template-columns: 50px 50px 50px;
-    grid-template-rows: 50px 50px 50px;
+    grid-template-columns: repeat(3, 70px);
+    grid-template-rows: repeat(3, 70px);
     align-items: center;
     justify-items: center;
     border: 1px black solid;
 }
 
 .cell {
-    height: 40px;
-    width: 40px;
+    height: 70px;
+    width: 70px;
+    color: rgb(5, 2, 47);
+    font-size: 3em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 900;
     cursor: pointer;
     border: 1px solid black;
     align-content: center;
@@ -31,9 +36,10 @@ body {
 }   
 
 #mainContainer {
+   
     display: grid;
     grid-template-rows: 1fr 4fr repeat(2, 1fr);
-   
+    gap: 10px;
   
 }
 
@@ -41,4 +47,21 @@ dialog {
     border-radius: 15px;
     border: none;
     box-shadow: 1px 5px 5px rgb(197, 183, 183);
+}
+
+.turn, .winnerBoard {
+    align-content: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+dialog::backdrop {
+
+    background: 
+    linear-gradient(10deg, rgb(128, 0, 111), red, rgb(242, 182, 2)),
+    linear-gradient(160deg, blue, red, green);
+   opacity: 50%;
+   
+  
 }
