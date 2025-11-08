@@ -5,14 +5,23 @@ const startButton = () => {
     const startBtn = document.querySelector('.startBtn');
     const modal = document.querySelector('#modal');
     startBtn.addEventListener('click' , () => {
+        changeTheme();
         modal.showModal();
         addPlayerNames();
         if(startBtn.parentNode) {
             startBtn.parentNode.removeChild(startBtn);
         }
+        
     });
 };
 
+function changeTheme() {
+    let theme = document.getElementById('style');
+
+    if(theme.getAttribute('href') == 'style.css') {
+        theme.setAttribute('href', 'style2.css')
+    }
+};
 
 function divCreate() {
     const container = document.querySelector('#mainContainer');
