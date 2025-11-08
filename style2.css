@@ -3,21 +3,25 @@
     --main-backgroud-color: rgb(0, 0, 0);
     --main-color: #09c6e8;
     --main-color2: rgb(15, 15, 15);
-    --main-text-color: white;
+    
     --box-color1: blue;
     --box-color2: red;
     --box-color-secondary2: rgb(255, 112, 112);
     --box-color-secondary1: rgb(113, 112, 255);
-   
+    
+    /* Text colors */
+    --main-text-color: white;
+    
     /* Font sizes */
     --main-size1: 1.5rem;
     --main-size2: 1.75rem;
+    
     /* Font familys */
     
     /* Borders */
     --main-rad50: 5px;
 
-    /* Utilities */
+   
     
 }
 
@@ -60,64 +64,6 @@ header {
     display: grid;
     grid-template-rows: 1fr 4fr repeat(2, 1fr);
     gap: 10px;
-}
-
-
-/* Start button */
-
-.startBtn::before {
-    content: '';
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0;
-    border-radius: var(--main-rad50);
-    box-shadow: 0px 0px 30px 10px var(--box-color1);
-    
-}
-.startBtn {
-    position: relative;
-    height: 50px;
-    width: 150px;
-    grid-row-start: 4;
-    grid-row-end: 5;
-    border: none;
-    cursor: pointer;
-    font-size: var(--main-size1);
-    border-radius: var(--main-rad50);
-    background: linear-gradient(to right, var(--box-color-secondary1), var(--box-color1));
-    color: var(--main-text-color);
-   
-}   
-
-.startBtn::after {
-    
-    height: 100%;
-    width: 0;
-    position:absolute;
-    left: 0;
-    top: 0;
-    box-shadow: 0px 0px 30px 10px var(--box-color2);
-    border-radius: var(--main-rad50);
-   
-}
-
-.startBtn:hover::after {
-   content: '';
-    width: 100%;
-   
-    
-}
-
-.startBtn:hover::before {
-    content: none;
-}
-
-.startBtn:hover {
-    background: linear-gradient(to right, var(--box-color-secondary2), var(--box-color2));
-    font-size: var(--main-size2);
-    width: 151px;
 }
 
 
