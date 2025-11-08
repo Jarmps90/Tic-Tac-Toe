@@ -12,12 +12,13 @@
     /* Font sizes */
     --main-size1: 1.5rem;
     --main-size2: 1.75rem;
+    
     /* Font familys */
     
     /* Borders */
     --main-rad50: 5px;
 
-    /* Utilities */
+
     
 }
 
@@ -120,52 +121,3 @@ header {
     font-size: var(--main-size2);
     width: 151px;
 }
-
-
-
-/* Dialog */
-
-dialog {
-    background: linear-gradient(to right, var(--box-color-secondary2), var(--box-color2));
-    border: none;
-    box-shadow: 0px 0px 30px 10px var(--box-color2);
-    border-radius: var(--main-rad50);
-    color: var(--main-text-color);
-}
-
-
-
-
-/* Main body */
-.mainBody {
-    display: grid;
-    grid-template-columns: repeat(3, 70px);
-    grid-template-rows: repeat(3, 70px);
-    align-items: center;
-    justify-items: center;
-    
-}
-
-
-/* Game cells */
-.cell {
-    height: 70px;
-    width: 70px;
-    align-content: center;
-    justify-items: center;
-    cursor: pointer;
-   
-    
-}
-
-
-
-/* Boards */
-.turn, .winnerBoard {
-    align-content: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    text-align: center;
-    font-size: 1.5rem;
-   
-}
-
