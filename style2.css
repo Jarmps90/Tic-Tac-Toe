@@ -44,12 +44,11 @@ header {
     position: sticky;
     align-content: center;
     justify-items: center;
-    text-shadow: 0 1px 10px var(--box-color1) ;
+    text-shadow: 0 1px 10px var(--box-color2) ;
     color: var(--main-text-color);
-    box-shadow: 0px 1px 10px 1px var(--box-color1);
+    box-shadow: 0px 1px 10px 1px var(--box-color2);
 
 }
-
 
 
 
