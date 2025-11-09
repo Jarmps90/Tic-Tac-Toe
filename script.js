@@ -231,7 +231,7 @@ function domLogic() {
     const board = Gameboard.getBoard();
     const container = document.querySelector('.mainBody');
     const currentTurn = document.querySelector('.turn')
-   
+    
     let count = 0;
     
     const updateScreen = () => {
@@ -250,10 +250,11 @@ function domLogic() {
                 cellBtn.textContent = cell
                 container.appendChild(cellBtn);
               
-                    
                 
+            
             })
         })
+      
         currentTurn.textContent = `${gameOn.getActivePlayer()}'s turn`;
     };
    
@@ -287,19 +288,20 @@ function domLogic() {
             gameOn.addToken(2,2)
         };
     };
+
         updateScreen();
         gameOn.winningContitions()
     };
     container.addEventListener('click', clicker) 
     
-    
+
     updateScreen();
     
- };
-
-
+};
 
 
 startButton();
+
+
 
 
