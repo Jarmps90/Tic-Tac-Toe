@@ -3,11 +3,11 @@
     --main-backgroud-color: rgb(0, 0, 0);
     --main-color: #09c6e8;
     --main-color2: rgb(15, 15, 15);
-    
     --box-color1: blue;
     --box-color2: red;
     --box-color-secondary2: rgb(255, 112, 112);
     --box-color-secondary1: rgb(113, 112, 255);
+    --cell-color1: gray;
     
     /* Text colors */
     --main-text-color: white;
@@ -20,6 +20,7 @@
     
     /* Font familys */
     
+    --cell-fontW: 600;
     /* Borders */
     --main-rad50: 5px;
 
@@ -53,7 +54,7 @@ header {
     text-shadow: 0 1px 10px var(--box-color2) ;
     color: var(--main-text-color);
     box-shadow: 0px 1px 10px 1px var(--box-color2);
-
+   
 }
 
 
@@ -62,7 +63,7 @@ header {
 /* Main container */
 
 #mainContainer {
-   
+    margin-top: 20px;
     display: grid;
     grid-template-rows: 1fr 4fr repeat(2, 1fr);
     gap: 10px;
@@ -73,13 +74,63 @@ header {
 /* Dialog */
 
 dialog {
+    
     background: linear-gradient(to right, var(--box-color-secondary2), var(--box-color2));
     border: none;
     box-shadow: 0px 0px 30px 10px var(--box-color2);
     border-radius: var(--main-rad50);
     color: var(--main-text-color);
+    animation: fade-out 0.1s ease-in;
 }
 
+dialog:open {
+    animation: fade-in 0.7s forwards;
+    
+}
+
+dialog:open::backdrop {
+    background-color: black;
+    animation: backdrop-fade-in 0.7s ease-out forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+        display: none;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        display: block;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform: scaleY(1);
+        display: block;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scaleY(0);
+        display: none;
+    }
+    
+}
+
+@keyframes backdrop-fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.25;
+    }
+}
 
 
 
@@ -90,8 +141,8 @@ dialog {
     grid-template-rows: repeat(3, 70px);
     align-items: center;
     justify-items: center;
-    
-}
+  
+}   
 
 
 /* Game cells */
@@ -104,7 +155,9 @@ dialog {
     font-size: var(--main-size3);
     color: var(--main-text-color2);
     text-shadow: 0 1px 10px var(--box-color2) ;;
-    
+    background: var(--cell-color1);
+    font-weight: var(--cell-fontW);
+  
 }
 
 
