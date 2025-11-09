@@ -11,10 +11,12 @@
     
     /* Text colors */
     --main-text-color: white;
+    --main-text-color2: black;
     
     /* Font sizes */
     --main-size1: 1.5rem;
     --main-size2: 1.75rem;
+    --main-size3: 3rem;
     
     /* Font familys */
     
@@ -99,7 +101,9 @@ dialog {
     align-content: center;
     justify-items: center;
     cursor: pointer;
-   
+    font-size: var(--main-size3);
+    color: var(--main-text-color2);
+    text-shadow: 0 1px 10px var(--box-color2) ;;
     
 }
 
@@ -107,6 +111,7 @@ dialog {
 
 /* Boards */
 .turn, .winnerBoard {
+    color: var(--main-text-color);
     align-content: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: center;
