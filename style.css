@@ -121,3 +121,63 @@ header {
     font-size: var(--main-size2);
     width: 151px;
 }
+
+
+dialog {
+    
+    background: linear-gradient(to right, var(--box-color-secondary2), var(--box-color2));
+    border: none;
+    box-shadow: 0px 0px 30px 10px var(--box-color2);
+    border-radius: var(--main-rad50);
+    color: var(--main-text-color);
+    animation: fade-out 0.7s ease-in;
+}
+
+dialog:open {
+    animation: fade-in 0.7s forwards;
+     
+}
+
+dialog:open::backdrop {
+    background-color: black;
+    animation: backdrop-fade-in 0.7s ease-out forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+        display: none;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        display: block;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform: scaleY(1);
+        display: block;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scaleY(0);
+        display: none;
+    }
+    
+}
+
+@keyframes backdrop-fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.25;
+    }
+} 
