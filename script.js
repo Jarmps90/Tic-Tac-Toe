@@ -5,7 +5,6 @@ const startButton = () => {
     const startBtn = document.querySelector('.startBtn');
     const modal = document.querySelector('#modal');
     startBtn.addEventListener('click' , () => {
-        changeTheme();
         modal.showModal();
         addPlayerNames();
         if(startBtn.parentNode) {
@@ -14,6 +13,7 @@ const startButton = () => {
         
     });
 };
+
 
 function changeTheme() {
     let theme = document.getElementById('style');
@@ -71,16 +71,27 @@ function cell() {
 
 function addPlayerNames() {
     const button = document.querySelector('.confirm');
-
+    const modal = document.querySelector('#modal');
+    
     button.addEventListener('click', () => {
         const player1 = document.querySelector('#playerOne').value;
         const player2 = document.querySelector('#playerTwo').value;
         players.push(player1, player2);
+        changeTheme();
+        modal.setAttribute('closing', '');
+        modal.addEventListener('animationend', () => {
+            modal.removeAttribute('closing');
+            modal.close();
+        }, {once:true})
+        
         divCreate();
+        
         domLogic();
-    })
+        
+        
+        
+    });
 };
-
 
 
 
@@ -117,6 +128,7 @@ function gameControll() {
 
     const getActivePlayer = () => activePlayer.playerName; 
 
+    
 
     const addToken = (row, colum) => {
         
@@ -126,7 +138,8 @@ function gameControll() {
             board[row][colum] = activePlayer.playerMarker;
             movesCount++;
            
-            return switchPlayers();
+             switchPlayers();
+             markerCheker();
             
             
     }
@@ -225,6 +238,15 @@ function winningContitions() {
     return{addToken, switchPlayers, winningContitions, getActivePlayer}
 };
 
+function markerCheker() {
+    const cell = document.querySelector('.cell');
+    const text = cell.textContent;
+    if(text === 'X') {
+        document.querySelector('.cell').classList = 'blue';
+    } else if (text === 'O') {
+        document.querySelector('.cell').classList = 'red'
+    };
+};
 
 function domLogic() {
     const gameOn = gameControll();
@@ -254,14 +276,10 @@ function domLogic() {
             
             })
         })
-      
-        currentTurn.textContent = `${gameOn.getActivePlayer()}'s turn`;
+    currentTurn.textContent = `${gameOn.getActivePlayer()}'s turn`;
     };
    
     
-    
-  
-
     function clicker(e) {
        
         const btn = e.target.dataset.cell;
@@ -288,20 +306,19 @@ function domLogic() {
             gameOn.addToken(2,2)
         };
     };
-
+       
         updateScreen();
         gameOn.winningContitions()
     };
     container.addEventListener('click', clicker) 
     
-
+    
     updateScreen();
     
 };
 
 
 startButton();
-
 
 
 
