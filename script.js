@@ -25,17 +25,16 @@ function changeTheme() {
 
 function divCreate() {
     const container = document.querySelector('#mainContainer');
-    const turn = document.createElement('div');
-    const mainBody = document.createElement('div');
-    const winnerBoard = document.createElement('div');
     
-    turn.classList.add('turn');
+    const mainBody = document.createElement('div');
+    const infoDisplay = document.createElement('div');
+    
+    
     mainBody.classList.add('mainBody');
-    winnerBoard.classList.add('winnerBoard')
+    infoDisplay.classList.add('infoDisplay')
    
-    container.appendChild(turn);
     container.appendChild(mainBody);
-    container.appendChild(winnerBoard);
+    container.appendChild(infoDisplay);
     
 };
 
@@ -149,7 +148,7 @@ function gameControll() {
 
 function winningContitions() {
    
-  const winnerText = document.querySelector('.winnerBoard')
+    const winnerText = document.querySelector('.infoDisplay');
    
     if(!board.length) return;
 
@@ -252,7 +251,7 @@ function domLogic() {
     const gameOn = gameControll();
     const board = Gameboard.getBoard();
     const container = document.querySelector('.mainBody');
-    const currentTurn = document.querySelector('.turn')
+    const currentTurn = document.querySelector('.infoDisplay');
     
     let count = 0;
     
@@ -271,9 +270,6 @@ function domLogic() {
                 cellBtn.dataset.cell = count;
                 cellBtn.textContent = cell
                 container.appendChild(cellBtn);
-              
-                
-            
             })
         })
     currentTurn.textContent = `${gameOn.getActivePlayer()}'s turn`;
