@@ -8,18 +8,34 @@
     --box-color2: red;
     --box-color-secondary2: rgb(255, 112, 112);
     --box-color-secondary1: rgb(113, 112, 255);
-   
-    /* Font sizes */
-    --main-size1: 1.5rem;
-    --main-size2: 1.75rem;
+    --font-color-b1: black;
     
-    /* Font familys */
+    /* Font sizes */
+    --main-size0-5: 0.5rem;
+    --main-size0-87: 0.875rem;
+    --main-size1: 1rem;
+    --main-size1-25: 1.25rem;
+    --main-size1-5: 1.5rem;
+    --main-size1-75: 1.75rem;
+    --main-size2: 2rem;
+    
+    /* Font weights*/
+    --main-weight400: 400;
+    --main-weight500: 500;
+   
+    --main-weight600: 600;
+    --main-weight700: 700;
     
     /* Borders */
-    --main-rad50: 5px;
+    --main-rad2: 2px;
+    --main-rad3: 3px;
+    --main-rad5: 5px;
+    --main-rad10: 10px;
 
-
+    /* Shadows */
     
+    --modal-shadow1: 2px 2px 2px rgb(132, 0, 0);
+    --modal-shadow2: 4px 4px 4px  rgb(132, 0, 0);
 }
 
 html {
@@ -52,9 +68,6 @@ header {
 }
 
 
-
-
-
 /* Main container */
 
 #mainContainer {
@@ -74,7 +87,7 @@ header {
     position: absolute;
     left: 0px;
     top: 0;
-    border-radius: var(--main-rad50);
+    border-radius: var(--main-rad10);
     box-shadow: 0px 0px 30px 10px var(--box-color1);
     
 }
@@ -86,10 +99,11 @@ header {
     grid-row-end: 5;
     border: none;
     cursor: pointer;
-    font-size: var(--main-size1);
-    border-radius: var(--main-rad50);
+    font-size: var(--main-size1-5);
+    border-radius: var(--main-rad10);
     background: linear-gradient(to right, var(--box-color-secondary1), var(--box-color1));
     color: var(--main-text-color);
+    font-weight: var(--main-weight600);
    
 }   
 
@@ -101,7 +115,7 @@ header {
     left: 0;
     top: 0;
     box-shadow: 0px 0px 30px 10px var(--box-color2);
-    border-radius: var(--main-rad50);
+    border-radius: var(--main-rad10);
    
 }
 
@@ -118,24 +132,31 @@ header {
 
 .startBtn:hover {
     background: linear-gradient(to right, var(--box-color-secondary2), var(--box-color2));
-    font-size: var(--main-size2);
+    font-size: var(--main-size1-75);
     width: 151px;
 }
 
 
+/* Modal */
+
+
+
 dialog {
-    
+    padding: 10px;
     background: linear-gradient(to right, var(--box-color-secondary2), var(--box-color2));
     border: none;
     box-shadow: 0px 0px 30px 10px var(--box-color2);
-    border-radius: var(--main-rad50);
+    border-radius: var(--main-rad10);
     color: var(--main-text-color);
-    animation: fade-out 0.7s ease-in;
+    animation: slide-in 0.7s ease-in;
 }
 
 dialog:open {
-    animation: fade-in 0.7s forwards;
-     
+    display: grid; 
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    animation: slide-in 0.7s forwards;
+    
 }
 
 dialog:open::backdrop {
@@ -143,33 +164,28 @@ dialog:open::backdrop {
     animation: backdrop-fade-in 0.7s ease-out forwards;
 }
 
-@keyframes fade-in {
+
+
+@keyframes slide-in {
     0% {
-        opacity: 0;
-        transform: scaleY(0);
-        display: none;
+        transform: translateY(400px);
+        animation-timing-function: ease-out;
+    }
+    60% {
+        transform: translateY(-30px);
+        animation-timing-function: ease-in;
+
+    }
+
+    80% {
+        transform: translateY(10px);
+        animation-timing-function: ease-out;
     }
 
     100% {
-        opacity: 1;
-        transform: scaleY(1);
-        display: block;
+        transform: translateY(0px);
+        animation-timing-function: ease-in;
     }
-}
-
-@keyframes fade-out {
-    0% {
-        opacity: 1;
-        transform: scaleY(1);
-        display: block;
-    }
-
-    100% {
-        opacity: 0;
-        transform: scaleY(0);
-        display: none;
-    }
-    
 }
 
 @keyframes backdrop-fade-in {
@@ -178,6 +194,69 @@ dialog:open::backdrop {
     }
 
     100% {
-        opacity: 0.25;
+        opacity: 100;
     }
-} 
+}
+
+
+/* Input */
+
+input {
+   
+    outline: none;
+    border: none;
+    width: 11em;
+    height: 1.6em;
+    border-radius: var(--main-rad3);
+    box-shadow: var(--modal-shadow1);
+    font-weight: 700;
+    font-size: var(--main-size0-87);
+    color: var(--font-color-b1);
+}
+
+input:focus {
+    transform: scale(1.02);
+    box-shadow: var(--modal-shadow2);
+}
+
+#playerTwo {
+    justify-self: start;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    margin-left: 5px;
+}
+
+#playerOne {
+    justify-self: end;
+    margin-right: 5px;
+}
+
+
+/* Modal confirm button */
+
+.confirm {
+    cursor: pointer;
+    width: 10em;
+    height: 1.4em;
+    justify-self: center;
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+    margin-top: 5px;
+    border-radius: var(--main-rad5);
+    border: none;
+    box-shadow: var(--modal-shadow1);
+    font-size: var(--main-size1-25);
+}
+
+
+
+.confirm:hover {
+    transform: scale(1.02);
+    box-shadow: var(--modal-shadow2);
+    
+}
+
+
+
+
+
