@@ -73,11 +73,11 @@ header {
 /* Main container */
 
 #mainContainer {
-   
+    margin-top: 50px;
     height: 100%;
     display: grid;
-    grid-template-rows:repeat(3, 1fr) 3fr;
-    gap: 10px;
+    grid-template-rows: 4fr 5fr;
+    gap: 20px;
 }
 
 
@@ -85,8 +85,7 @@ header {
 
 /* Main body */
 .mainBody {
-    grid-row-start: 4;
-    grid-row-end: 5;
+    grid-row: 2 / 3;
     display: grid;
     grid-template-columns: repeat(3, 70px);
     grid-template-rows: repeat(3, 70px);
@@ -114,13 +113,14 @@ header {
 
 /* Boards */
 
-.turn, .winnerBoard {
+.infoDisplay {
     color: var(--main-text-color);
     align-content: center;
     
     text-align: center;
     font-size: var(--main-size150)
 }
+
 
 
 /* Modal */
@@ -132,11 +132,20 @@ dialog {
     box-shadow: 0px 0px 30px 10px var(--box-color2);
     border-radius: var(--main-rad10);
     color: var(--main-text-color);
+    animation: slide-in 0.7s ease-in;
+}
+
+dialog:open {
+    display: grid; 
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    animation: slide-in 0.7s forwards;
+    
 }
 
 dialog:open::backdrop {
     background-color: black;
-    animation: backdrop-fade-in 0.07s ease-out forwards;
+    animation: backdrop-fade-in 0.7s ease-out forwards;
 }
 
 #modal[closing] {
@@ -181,6 +190,7 @@ dialog:open::backdrop {
         opacity: 100;
     }
 }
+
 
 /* Input */
 
