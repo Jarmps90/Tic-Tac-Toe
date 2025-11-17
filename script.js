@@ -59,14 +59,23 @@ const Gameboard = (function() {
             console.log(rowString)
         }
     };
-   
+
+
     return {getBoard, printBoard}
 })();
+
+function resetBoard() {
+    let board = Gameboard.getBoard();
+
+    
+};
 
 function cell() {
     let value = 0;
 
 };
+
+
 
 function addPlayerNames() {
     const button = document.querySelector('.confirm');
@@ -84,7 +93,6 @@ function addPlayerNames() {
         }, {once:true})
         
         divCreate();
-        
         domLogic();
         
         
@@ -138,7 +146,7 @@ function gameControll() {
             movesCount++;
            
              switchPlayers();
-             markerCheker();
+            
             
             
     }
@@ -237,15 +245,7 @@ function winningContitions() {
     return{addToken, switchPlayers, winningContitions, getActivePlayer}
 };
 
-function markerCheker() {
-    const cell = document.querySelector('.cell');
-    const text = cell.textContent;
-    if(text === 'X') {
-        document.querySelector('.cell').classList = 'blue';
-    } else if (text === 'O') {
-        document.querySelector('.cell').classList = 'red'
-    };
-};
+
 
 function domLogic() {
     const gameOn = gameControll();
@@ -315,6 +315,5 @@ function domLogic() {
 
 
 startButton();
-
 
 
