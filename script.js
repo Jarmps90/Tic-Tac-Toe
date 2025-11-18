@@ -28,14 +28,15 @@ function divCreate() {
     
     const mainBody = document.createElement('div');
     const infoDisplay = document.createElement('div');
-    
+    const resetButton = document.createElement('button');
     
     mainBody.classList.add('mainBody');
     infoDisplay.classList.add('infoDisplay')
-   
+    resetButton.classList.add('reset');
+    resetButton.textContent = 'Restart';
     container.appendChild(mainBody);
     container.appendChild(infoDisplay);
-    
+    container.appendChild(resetButton);
 };
 
 const Gameboard = (function() {
@@ -46,12 +47,21 @@ const Gameboard = (function() {
   for(let i = 0; i < rows; i++) {
     gameBoard[i] = [];
     for(let j = 0; j < colums; j++) {
-      gameBoard[i].push(cell())
+      gameBoard[i].push('')
     };
   };
   
   const getBoard = () => gameBoard;
 
+  const clearBoard = () => {
+
+  for(let i = 0; i < rows; i++) {
+    gameBoard[i] = [];
+    for(let j = 0; j < colums; j++) {
+      gameBoard[i].push('')
+    };
+  };
+  }
    //Displays printed board 
     const printBoard = () => {
         for(let row of gameBoard) {
@@ -61,19 +71,12 @@ const Gameboard = (function() {
     };
 
 
-    return {getBoard, printBoard}
+    return {getBoard, printBoard, clearBoard}
 })();
 
-function resetBoard() {
-    let board = Gameboard.getBoard();
 
-    
-};
 
-function cell() {
-    let value = 0;
-
-};
+;
 
 
 
@@ -100,11 +103,21 @@ function addPlayerNames() {
     });
 };
 
-
-
+const resetBoard = (function() {
+    const resetButton = document.querySelector('.reset');
+    const mainContainer = document.querySelector('#mainContainer');
+       resetButton.addEventListener('click', () => {
+        winner = false;
+        Gameboard.clearBoard();
+        mainContainer.innerHTML = '';
+        divCreate();
+        domLogic();
+    })
+});
 
 function gameControll() {
     const board = Gameboard.getBoard()
+    
     let movesCount = 0;
 
   
@@ -139,17 +152,16 @@ function gameControll() {
 
     const addToken = (row, colum) => {
         
-      if((board[row][colum] === playerOne.playerMarker) || (board[row][colum] === playerTwo.playerMarker)) {
+      if((board[row][colum] == playerOne.playerMarker) || (board[row][colum] == playerTwo.playerMarker)) {
             return console.log('This is invalid move')
         } else {
             board[row][colum] = activePlayer.playerMarker;
             movesCount++;
            
              switchPlayers();
-            
-            
-            
     }
+
+  
 };
 
 
@@ -235,9 +247,7 @@ function winningContitions() {
     } else if(movesCount === 9) {
         winner = true;
         return winnerText.textContent = 'Its a tie'
-    } else {
-        winner = false;
-    }
+    } 
     
     };
     
@@ -308,10 +318,13 @@ function domLogic() {
     };
     container.addEventListener('click', clicker) 
     
-    
+   
+
+    resetBoard();
     updateScreen();
     
 };
+
 
 
 startButton();
