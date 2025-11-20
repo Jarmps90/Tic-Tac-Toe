@@ -8,6 +8,8 @@
     --box-color-secondary2: rgb(255, 112, 112);
     --box-color-secondary1: rgb(113, 112, 255);
     --cell-color1: gray;
+    --cell-border-color: rgb(239, 239, 239);
+
     
     /* Text colors */
     --main-text-color: white;
@@ -17,8 +19,20 @@
     --main-size150: 1.5rem;
     --main-size175: 1.75rem;
     --main-size300: 3rem;
+   
+    --main-size0-5: 0.5rem;
+    --main-size0-87: 0.875rem;
+    --main-size1: 1rem;
+    --main-size1-25: 1.25rem;
+    --main-size1-5: 1.5rem;
+    --main-size1-75: 1.75rem;
+   
+    --main-size2: 2rem;
     
-    /* Font familys */
+    /* Box sizes */
+
+    --box-size50: 3.125rem;
+    --box-size150: 9.375rem;
     
     /* Font weights */
     --cell-fontW: 600;
@@ -36,8 +50,13 @@
     --text-shadow-red1:  0 2px 10px var(--box-color2);
     --text-shadow-blue1:  3px 3px 5px rgb(34, 34, 255); 
     --text-shadow-blue2:  0 0 12px var(--box-color1);
-    --text-shadow-blue3: 0 0 2px var(--box-color2)
+    --text-shadow-blue3: 0 0 2px var(--box-color2);
+    --box-shadow-blue1: 0px 0px 30px 10px var(--box-color1); 
+    --box-shadow-blue2: 0px -3px 10px 2px var(--box-color1); 
+    --box-shadow-red1: 0px 0px 30px 10px var(--box-color2);
+    --box-shadow-red2: 0px -3px 10px 2px var(--box-color2);
 }
+
 
 html {
     width: 100%;
@@ -76,6 +95,7 @@ header {
 /* Main container */
 
 #mainContainer {
+    justify-items: center;
     margin-top: 50px;
     height: 100%;
     display: grid;
@@ -94,12 +114,26 @@ header {
     grid-template-rows: repeat(3, 70px);
     align-items: center;
     justify-items: center;
-    gap: 7px;
+    
+    gap: 8px;
 }   
 
 
 /* Game cells */
+
+.cell::before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    box-shadow: var(--box-shadow-red2);
+    border-radius: var(--main-rad5);
+    top: 0;
+    left: 0;
+}
+
 .cell {
+    position: relative;
     height: 70px;
     width: 70px;
     align-content: center;
@@ -111,10 +145,30 @@ header {
     background: var(--cell-color1);
     font-weight: var(--cell-fontW);
     border-radius: var(--main-rad5);
-    box-shadow: var(--text-shadow-blue2);
-    outline: none;
     border: none;
+    outline-color: var(--cell-border-color);
+    
+    
    
+}
+
+.cell::after {
+    content: none;
+    position: absolute;
+    height: 100%;
+    width: 0;
+    border-radius: var(--main-rad5);
+    box-shadow: var(--box-shadow-blue2);
+    top: 0;
+    left: 0;
+
+}
+.cell:hover::before {
+    content: none;
+}
+.cell:hover::after {
+    content: '';
+    width: 100%;
 }
 
 
@@ -257,6 +311,56 @@ input:focus {
 }
 
 
+.reset::before {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: var(--main-rad10);
+    box-shadow: var(--box-shadow-red1);
+}
+
+.reset {
+    margin-top: 20px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    color: var(--main-text-color);
+    font-size: var(--main-size1-5);
+    font-weight: 600;
+    border-radius: var(--main-rad10);
+    height: var(--box-size50);
+    width: var(--box-size150) ;
+    background: linear-gradient(to right, var(--box-color-secondary2), var(--box-color2));
+}
+
+.reset::after {
+   
+    position: absolute;
+    
+    border-radius: var(--main-rad10);
+    box-shadow: var(--box-shadow-blue1);
+    height: 100%;
+    width: 0;
+    top: 0;
+    left: 0;
+}
+
+.reset:hover::before {
+    content: none;
+}
+.reset:hover::after {
+    content: '';
+    width: 100%;
+}
 
 
-
+.reset:hover {
+    color: var(--main-text-color);
+    background: linear-gradient(to right, var(--box-color-secondary1), var(--box-color1));
+    font-size: 1.55rem;
+    width: 151px;
+}
