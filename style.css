@@ -104,7 +104,7 @@ header {
     background: linear-gradient(to right, var(--box-color-secondary1), var(--box-color1));
     color: var(--main-text-color);
     font-weight: var(--main-weight600);
-   
+    
 }   
 
 .startBtn::after {
